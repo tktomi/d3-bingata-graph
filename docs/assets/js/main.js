@@ -1,3 +1,5 @@
+let bingata, node_links;
+
 function drawNetwork(nodes, links, patterns) {
   const svgWidth = 800;
   const svgHeight = 500;
@@ -118,15 +120,8 @@ function patterns2checkboxList(patterns, change = () => {}) {
   return ul;
 }
 
-Promise.all([
-  d3.json('./assets/data/bg.json'),
-  d3.json('./assets/data/node_links.json')
-]).then(data => {
-  const bingata = data[0];
-  const node_links = data[1];
-
-  const checkboxList = patterns2checkboxList(bingata.patterns, checkbox => {
-    d3.select('svg').remove();
+function remakeNetwork() {
+  d3.select('svg').remove();
     const checkboxes = Array.from(document.getElementsByClassName('link-checkbox'));
     const checkedIds = checkboxes
       .filter(checkbox => checkbox.checked)
@@ -140,7 +135,32 @@ Promise.all([
       node.vy = 0.0;
     });
     drawNetwork(node_links.nodes, filteredLinks, bingata.patterns);
-  });
+}
+
+function connectAll() {
+  const checkboxes = document.getElementsByClassName('link-checkbox');
+  for (let checkbox of checkboxes) {
+    checkbox.setAttribute('checked', true);
+  }
+  remakeNetwork();
+}
+
+function disConnectAll() {
+  const checkboxes = document.getElementsByClassName('link-checkbox');
+  for (let checkbox of checkboxes) {
+    checkbox.removeAttribute('checked');
+  }
+  remakeNetwork();
+}
+
+Promise.all([
+  d3.json('./assets/data/bg.json'),
+  d3.json('./assets/data/node_links.json')
+]).then(data => {
+  bingata = data[0];
+  node_links = data[1];
+
+  const checkboxList = patterns2checkboxList(bingata.patterns, remakeNetwork);
   document.body.appendChild(checkboxList);
   
   drawNetwork(node_links.nodes, node_links.links, bingata.patterns);
