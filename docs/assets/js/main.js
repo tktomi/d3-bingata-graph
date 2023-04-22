@@ -1,6 +1,6 @@
 function drawNetwork(nodes, links, patterns) {
-  const svgWidth = 600;
-  const svgHeight = 600;
+  const svgWidth = 800;
+  const svgHeight = 500;
 
   // 力学的グラフを作成する
   var simulation = d3.forceSimulation(nodes)
@@ -96,6 +96,8 @@ function patterns2checkboxList(patterns, change = () => {}) {
     label.innerText = pattern.name;
 
     const li = document.createElement('li');
+    li.classList.add('link-check-list-item');
+
     li.appendChild(checkbox);
     li.appendChild(label);
     return li;
@@ -133,10 +135,7 @@ Promise.all([
     });
     drawNetwork(node_links.nodes, filteredLinks, bingata.patterns);
   });
-
-  d3.select('#myGraph')
-    .node()
-    .appendChild(checkboxList);
+  document.body.appendChild(checkboxList);
   
   drawNetwork(node_links.nodes, node_links.links, bingata.patterns);
 });

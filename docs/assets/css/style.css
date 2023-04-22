@@ -1,0 +1,9 @@
+#link-check-list {
+    list-style-type: none;
+}
+
+.link-check-list-item {
+    margin: 5px;
+    float: left;
+    width: 110px;
+}
