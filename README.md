@@ -9,6 +9,6 @@
 cd data_tools
 python3 json_converter.py
 node_links_converter.py
-mv node_links.json ../assets/data/node_links.json
+mv node_links.json ../docs/assets/data/node_links.json
 ```
 

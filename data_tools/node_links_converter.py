@@ -5,12 +5,10 @@
         {
             "id": "1",
             "name": "松に梅",
-            "image":"bg1.png"
         },
         {
             "id": "2",
             "name": "山に牡丹大模様",
-            "image":"bg1.png",
         }
         // ...
     ],
@@ -42,8 +40,8 @@ def pattern_and_bingata2links(pattern, bingata):
     has_pattern_bingata_ids = list(map(lambda b: b['id'], has_pattern_bingata))
     links = itertools.combinations(has_pattern_bingata_ids, 2)
     links = map(lambda l: {
-        'source': l[0],
-        'target': l[1]
+        'source': int(l[0]),
+        'target': int(l[1]),
     }, links)
     links = list(links)
     return links
@@ -54,8 +52,9 @@ def main():
         input_json = json.load(input_file)
         output_json = {}
         output_json['nodes'] = map(lambda b: {
-            'id': b['id'],
-            'name': b['title']
+            'id': int(b['id']),
+            'name': b['title'],
+            'image': b['image'],
         }, input_json['bingata'])
         output_json['nodes'] = list(output_json['nodes'])
         output_json['links'] = map(

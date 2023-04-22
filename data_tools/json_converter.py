@@ -59,6 +59,7 @@ def row2bingata_dict(row, pattern_keys):
     return {
         'id': row['番号'],
         'title': row['タイトル'],
+        'image': row['ファイル名'],
         'patterns': patterns,
     }
 
