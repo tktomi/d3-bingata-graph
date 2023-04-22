@@ -46,9 +46,9 @@ function drawNetwork(nodes, links, patterns) {
     .data(links)
     .enter()
     .append('line')
-    .attr('stroke', 'white')
     // linkの色分けする際に使用する
-    // .attr('stroke', l => `rgb(${l.color[0]}, ${l.color[1]}, ${l.color[2]})`)
+    .attr('stroke', l => `rgb(${l.color[0]}, ${l.color[1]}, ${l.color[2]})`)
+    // .attr('stroke', 'white')
     .attr('stroke-opacity', '20%');
 
   const nodeSize = 20;
