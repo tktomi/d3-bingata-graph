@@ -71,6 +71,15 @@ function drawNetwork(nodes, links, patterns) {
     })
     .attr('width', nodeSize)
     .attr('height', nodeSize)
+    .on('mouseover', (e, d) => {
+      const hoverImg = document.getElementById('hover-image');
+      hoverImg.src = `./assets/data/img/${d.image}`;
+      hoverImg.style.display = '';
+    })
+    .on('mouseout', (e, d) => {
+      const hoverImg = document.getElementById('hover-image');
+      hoverImg.style.display = 'none';
+    })
     .call(drag(simulation)); // ノードをドラッグできるようにする
 
   // シミュレーションのフレームごとに呼び出される関数を定義する
