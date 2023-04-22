@@ -3,6 +3,7 @@ const svgWidth = 800;
 const svgHeight = 500;
 
 function drawNetwork(nodes, links, patterns) {
+  // https://qiita.com/junkoda/items/2d12ecdd3b4b5c99d994
   // 力学的グラフを作成する
   var simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink().id(d => d.id).links(links))
@@ -13,7 +14,8 @@ function drawNetwork(nodes, links, patterns) {
         .x1(svgWidth - 20)
         .y0(20)
         .y1(svgHeight - 20)
-    );
+    )
+    .velocityDecay(0.7);
 
   // ノードをドラッグできるようにする関数を定義する
   function drag(simulation) {
@@ -135,19 +137,19 @@ function patterns2checkboxList(patterns, change = () => {}) {
 
 function remakeNetwork() {
   d3.select('svg').remove();
-    const checkboxes = Array.from(document.getElementsByClassName('link-checkbox'));
-    const checkedIds = checkboxes
-      .filter(checkbox => checkbox.checked)
-      .map(checkbox => Number(checkbox.value));
-    const filteredLinks = node_links.links
-      .filter(l => checkedIds.find(checkedId => checkedId === l.pattern_id));
-    node_links.nodes.forEach(node => {
-      node.x = 0.0;
-      node.y = 0.0;
-      node.vx = 0.0;
-      node.vy = 0.0;
-    });
-    drawNetwork(node_links.nodes, filteredLinks, bingata.patterns);
+  const checkboxes = Array.from(document.getElementsByClassName('link-checkbox'));
+  const checkedIds = checkboxes
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => Number(checkbox.value));
+  const filteredLinks = node_links.links
+    .filter(l => checkedIds.find(checkedId => checkedId === l.pattern_id));
+  node_links.nodes.forEach(node => {
+    node.x = 0.0;
+    node.y = 0.0;
+    node.vx = 0.0;
+    node.vy = 0.0;
+  });
+  drawNetwork(node_links.nodes, filteredLinks, bingata.patterns);
 }
 
 function connectAll() {
