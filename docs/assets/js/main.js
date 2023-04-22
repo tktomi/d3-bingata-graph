@@ -6,7 +6,13 @@ function drawNetwork(nodes, links, patterns) {
   var simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink().id(d => d.id).links(links))
     .force('charge', d3.forceManyBody())
-    .force('center', d3.forceCenter(svgWidth / 2, svgHeight / 2));
+    .force('center', d3.forceCenter(svgWidth / 2, svgHeight / 2))
+    .force('limit', d3.forceLimit()
+        .x0(20)
+        .x1(svgWidth - 20)
+        .y0(20)
+        .y1(svgHeight - 20)
+    );
 
   // ノードをドラッグできるようにする関数を定義する
   function drag(simulation) {
