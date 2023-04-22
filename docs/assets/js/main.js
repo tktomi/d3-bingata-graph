@@ -1,9 +1,8 @@
 let bingata, node_links;
+const svgWidth = 800;
+const svgHeight = 500;
 
 function drawNetwork(nodes, links, patterns) {
-  const svgWidth = 800;
-  const svgHeight = 500;
-
   // 力学的グラフを作成する
   var simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink().id(d => d.id).links(links))
@@ -71,12 +70,17 @@ function drawNetwork(nodes, links, patterns) {
     })
     .attr('width', nodeSize)
     .attr('height', nodeSize)
-    .on('mouseover', (e, d) => {
+    .on('mouseenter', (e, d) => {
       const hoverImg = document.getElementById('hover-image');
       hoverImg.src = `./assets/data/img/${d.image}`;
       hoverImg.style.display = '';
+      hoverImg.style.left = `${svgWidth + 30}px`;
+      hoverImg.style.top = '30px';
+      // hoverImg.style.top = '';
+      // hoverImg.style.right = '';
+      console.log(d);
     })
-    .on('mouseout', (e, d) => {
+    .on('mouseleave', (e, d) => {
       const hoverImg = document.getElementById('hover-image');
       hoverImg.style.display = 'none';
     })
