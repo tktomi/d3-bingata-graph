@@ -45,7 +45,6 @@ def pattern_and_bingata2links(pattern, bingata):
     
     def pattern_id2rcolor(pattern_id):
         rgb = colorsys.hsv_to_rgb(pattern['id'] / 90.0, 1.0, 1.0)
-        print(rgb)
         return [rgb[0] * 255, rgb[1] * 255, rgb[2] * 255]
 
     links = map(lambda l: {

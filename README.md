@@ -9,7 +9,7 @@
 cd data_tools
 python3 json_converter.py
 python3 node_links_converter.py
-mv bg.json ../docs/assets/data/bg.json
-mv node_links.json ../docs/assets/data/node_links.json
+cp bg.json ../docs/assets/data/bg.json
+cp node_links.json ../docs/assets/data/node_links.json
 cd ..
 ```
