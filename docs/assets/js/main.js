@@ -73,18 +73,20 @@ function drawNetwork(nodes, links, patterns) {
     .attr('width', nodeSize)
     .attr('height', nodeSize)
     .on('mouseenter', (e, d) => {
+      const previewContainer = document.getElementById('preview-container');
+      previewContainer.style.display = '';
+      previewContainer.style.left = `${svgWidth + 30}px`;
+      previewContainer.style.top = '30px';
       const hoverImg = document.getElementById('hover-image');
       hoverImg.src = `./assets/data/img/${d.image}`;
-      hoverImg.style.display = '';
-      hoverImg.style.left = `${svgWidth + 30}px`;
-      hoverImg.style.top = '30px';
       // hoverImg.style.top = '';
       // hoverImg.style.right = '';
-      console.log(d);
+      const hoverImageName = document.getElementById('hover-image-name');
+      hoverImageName.innerText = d.name;
     })
     .on('mouseleave', (e, d) => {
-      const hoverImg = document.getElementById('hover-image');
-      hoverImg.style.display = 'none';
+      const previewContainer = document.getElementById('preview-container');
+      previewContainer.style.display = 'none';
     })
     .call(drag(simulation)); // ノードをドラッグできるようにする
 

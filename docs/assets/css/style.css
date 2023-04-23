@@ -8,8 +8,11 @@
     width: 110px;
 }
 
-#hover-image {
+#preview-container {
     position: absolute;
+}
+
+#hover-image {
     max-width: 400px;
     max-height: 400px;
 }
