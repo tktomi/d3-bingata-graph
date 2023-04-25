@@ -1,0 +1,15 @@
+#link-check-list {
+    list-style-type: none;
+}
+
+.link-check-list-item {
+    margin: 5px;
+    float: left;
+    width: 110px;
+}
+
+#hover-image {
+    position: absolute;
+    max-width: 400px;
+    max-height: 400px;
+}

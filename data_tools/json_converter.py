@@ -85,7 +85,7 @@ def replace_bingata_pattern_id(bingata, patterns):
 
 
 def main():
-    with open('bg.csv', 'r') as csv_file, open('bg.json', 'w') as json_file:
+    with open('bg.csv', 'r') as csv_file, open('bg.json', 'w') as json_file, open('patterns.json', 'w') as patterns_json_file:
         reader = csv.DictReader(csv_file)
         bingata_list = dict_reader2bingata_list(reader)
         patterns = bingata_list2patterns(bingata_list)
